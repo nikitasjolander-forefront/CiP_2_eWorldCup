@@ -1,0 +1,6 @@
+@CiPeWorldCup_HostAddress = http://localhost:5298
+
+GET {{CiPeWorldCup_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
