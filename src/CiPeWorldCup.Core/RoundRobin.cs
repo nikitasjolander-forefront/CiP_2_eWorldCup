@@ -6,11 +6,11 @@ namespace CiPeWorldCup.Core;
 
 public class RoundRobinPairings : TournamentRules
 {
-    public RoundRobinPairings(long numberOfParticipants) : base(numberOfParticipants)
+    public RoundRobinPairings(int numberOfParticipants) : base(numberOfParticipants)
     {
     }
 
-    public Result<List<(Participant, Participant)>> GeneratePairings(List<Participant> players, long roundNumber) 
+    public Result<List<(Participant, Participant)>> GeneratePairings(List<Participant> players, int roundNumber) 
     {
         var participantValidation = ValidateNumberOfParticipants.ValidateParticipants(players.Count);
         if (!participantValidation.IsSuccess)
@@ -25,8 +25,8 @@ public class RoundRobinPairings : TournamentRules
         }
 
         var pairings = new List<(Participant, Participant)>();
-        long numberOfPlayers = NumberOfParticipants;
-        long halfSize = numberOfPlayers / 2;
+        int numberOfPlayers = NumberOfParticipants;
+        int halfSize = numberOfPlayers / 2;
 
         var rotatedPlayers = RotatePlayersForRound(players, roundNumber);
 
@@ -40,7 +40,7 @@ public class RoundRobinPairings : TournamentRules
         return Result<List<(Participant, Participant)>>.Ok(pairings);
     }
 
-    private List<Participant> RotatePlayersForRound(List<Participant> players, long roundNumber)
+    private List<Participant> RotatePlayersForRound(List<Participant> players, int roundNumber)
     {
         var rotated = new List<Participant> { players[0] }; 
 

@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace CiPeWorldCup.Core.Validation;
 public class ValidateNumberOfParticipants
 {
-    public static Result<long> ValidateParticipants(long numberOfParticipants)
+    public static Result<int> ValidateParticipants(int numberOfParticipants)
     {
         if (numberOfParticipants < 2)
         {
-            return Result<long>.Fail("Not enough participants");
+            return Result<int>.Fail("Not enough participants");
         }
 
         if (numberOfParticipants % 2 != 0)
         {
-            return Result<long>.Fail("Not an even number of participants");
+            return Result<int>.Fail("Not an even number of participants");
         }
 
-        return Result<long>.Ok(numberOfParticipants);
+        return Result<int>.Ok(numberOfParticipants);
     }
 
 

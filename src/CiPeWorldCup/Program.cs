@@ -1,4 +1,5 @@
 ﻿using CiPeWorldCup.Application.Services;
+using CiPeWorldCup.Core;
 using CiPeWorldCup.Core.Interfaces;
 using CiPeWorldCup.Infrastructure.Data;
 using CiPeWorldCup.Infrastructure.Repositories;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IParticipantRepository, ParticipantRepository>();
 // Application Services
 builder.Services.AddScoped<ParticipantService>();
 builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddScoped<TournamentService>();
 
 var app = builder.Build();
 

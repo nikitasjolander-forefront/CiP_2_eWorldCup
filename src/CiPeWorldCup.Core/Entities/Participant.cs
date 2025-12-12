@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CiPeWorldCup.Core.Entities;
+
 public sealed record Participant(string Name, int Id)
 {
 }

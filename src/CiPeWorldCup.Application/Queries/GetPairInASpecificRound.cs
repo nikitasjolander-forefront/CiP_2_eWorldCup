@@ -11,7 +11,7 @@ namespace CiPeWorldCup.Application.Queries;
 
 public class GetPairInASpecificRound
 {
-    public Result<(Participant, Participant)> GetPlayersInRound(List<Participant> players, long numberOfParticipants, int matchNumber, long roundNumber)
+    public Result<(Participant, Participant)> GetPlayersInRound(List<Participant> players, int numberOfParticipants, int matchNumber, int roundNumber)
     {
         var roundRobin = new RoundRobinPairings(numberOfParticipants);
         var pairingsResult = roundRobin.GeneratePairings(players, roundNumber);

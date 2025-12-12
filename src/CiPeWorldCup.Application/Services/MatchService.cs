@@ -25,25 +25,34 @@ public class MatchService : IMatchService
             matches.Add(new Match
             {
                 Id = matchId++,
-                RoundNumber = roundNumber,
-                ParticipantIds = new[] { (long)player1.Id, (long)player2.Id }
+                Round = roundNumber,
+                Player1Id = player1.Id,
+                Player2Id = player2.Id
             });
         }
 
         return Result<List<Match>>.Ok(matches);
     }
 
-    public Tournament Create(long numberOfParticipants)
+    public Tournament Create(int numberOfParticipants)
     {
-        var schedule = new RoundRobinPairings(numberOfParticipants);
-        return new Tournament(schedule);
+        var tournament = new Tournament
+        {
+            NumberOfPlayers = numberOfParticipants,
+            Schedule = new RoundRobinPairings(numberOfParticipants)
+        };
+        return tournament;
     }
 
-    public long GetRemainingMatchesCount(long totalPlayers, long roundsPlayed)
+    public int GetRemainingMatchesCount(int totalPlayers, int roundsPlayed)
     {
-        var tournament = new Tournament(new RoundRobinPairings(totalPlayers));
-        tournament.CurrentRound = roundsPlayed + 1;
-        return tournament.NumberOfMatchesRemaining;
+        // Calculate the total number of matches in a round-robin tournament
+        int totalMatches = totalPlayers * (totalPlayers - 1) / 2;
+        // Calculate the number of matches played so far
+        var roundRobin = new RoundRobinPairings(totalPlayers);
+        int matchesPerRound = roundRobin.MatchesPerRound;
+        int matchesPlayed = matchesPerRound * roundsPlayed;
+        return totalMatches - matchesPlayed;
     }
 
     public async Task<Result<List<Match>>> GetScheduleForParticipantAsync(int participantId, List<Participant> allParticipants)
@@ -58,7 +67,7 @@ public class MatchService : IMatchService
         var schedule = new List<Match>();
         int matchIdCounter = 1;
 
-        for (long round = 1; round <= roundRobin.NumberOfRounds; round++)
+        for (int round = 1; round <= roundRobin.NumberOfRounds; round++)
         {
             var pairingsResult = roundRobin.GeneratePairings(allParticipants, round);
             
@@ -74,8 +83,9 @@ public class MatchService : IMatchService
                     schedule.Add(new Match
                     {
                         Id = matchIdCounter++,
-                        RoundNumber = (int)round,
-                        ParticipantIds = new[] { (long)player1.Id, (long)player2.Id }
+                        Round = round,
+                        Player1Id = player1.Id,
+                        Player2Id = player2.Id
                     });
                     break;
                 }

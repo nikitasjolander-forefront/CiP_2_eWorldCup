@@ -9,10 +9,10 @@ namespace CiPeWorldCup.Application.Queries;
 
 public class GetRemainingMatchesQuery
 {
-    public long TotalPlayers { get; init; }
-    public long RoundsPlayed { get; init; }
+    public int TotalPlayers { get; init; }
+    public int RoundsPlayed { get; init; }
 
-    public GetRemainingMatchesQuery(long totalPlayers, long roundsPlayed)
+    public GetRemainingMatchesQuery(int totalPlayers, int roundsPlayed)
     {
         TotalPlayers = totalPlayers;
         RoundsPlayed = roundsPlayed;

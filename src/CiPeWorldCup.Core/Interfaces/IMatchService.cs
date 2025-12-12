@@ -9,7 +9,7 @@ public interface IMatchService
     
     Task<Result<List<Match>>> GetScheduleForParticipantAsync(int participantId, List<Participant> allParticipants);
     
-    Tournament Create(long numberOfParticipants);
+    Tournament Create(int numberOfParticipants);
     
-    long GetRemainingMatchesCount(long totalPlayers, long roundsPlayed);
+    int GetRemainingMatchesCount(int totalPlayers, int roundsPlayed);
 }

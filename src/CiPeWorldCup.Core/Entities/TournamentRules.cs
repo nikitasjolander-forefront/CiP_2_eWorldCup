@@ -3,13 +3,13 @@ using CiPeWorldCup.Core.Validation;
 
 namespace CiPeWorldCup.Core.Entities;
 
-public class TournamentRules(long numberOfParticipants)
+public class TournamentRules(int numberOfParticipants)
 {
-    public long NumberOfParticipants { get; } = numberOfParticipants;
-    public long NumberOfRounds => NumberOfParticipants - 1;
-    public long MatchesPerRound => NumberOfParticipants / 2;
+    public int NumberOfParticipants { get; } = numberOfParticipants;
+    public int NumberOfRounds => NumberOfParticipants - 1;
+    public int MatchesPerRound => NumberOfParticipants / 2;
 
-    public static Result<TournamentRules> Create(long numberOfParticipants)
+    public static Result<TournamentRules> Create(int numberOfParticipants)
     {
         var validationParticipant = ValidateNumberOfParticipants.ValidateParticipants(numberOfParticipants);
         if (!validationParticipant.IsSuccess)
