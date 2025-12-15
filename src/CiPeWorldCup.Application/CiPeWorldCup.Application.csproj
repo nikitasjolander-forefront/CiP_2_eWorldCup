@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CiPeWorldCup.Core\CiPeWorldCup.Core.csproj" />
+    <ProjectReference Include="..\CiPeWorldCup.Infrastructure\CiPeWorldCup.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

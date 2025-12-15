@@ -5,14 +5,14 @@ namespace CiPeWorldCup.Application.Queries;
 
 public class MaxNumberOfRounds
 {
-    public Result<long> CalculateMaxRounds(long numberOfParticipants)
+    public Result<int> CalculateMaxRounds(int numberOfParticipants)
     {
         var validationResult = ValidateNumberOfParticipants.ValidateParticipants(numberOfParticipants);
 
         if (!validationResult.IsSuccess)
         {
-            return Result<long>.Fail(validationResult.Error);
+            return Result<int>.Fail(validationResult.Error);
         }
-        return Result<long>.Ok(numberOfParticipants - 1);
+        return Result<int>.Ok(numberOfParticipants - 1);
     }
 }

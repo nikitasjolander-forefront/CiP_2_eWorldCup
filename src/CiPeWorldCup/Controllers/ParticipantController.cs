@@ -45,7 +45,7 @@ namespace CiPeWorldCup.Controllers
             
             var dtos = participants.Select(p => new ParticipantDTO
             {
-                Id = p.Id,
+                Id = (int)p.Id,
                 Name = p.Name
             });
             
@@ -63,7 +63,7 @@ namespace CiPeWorldCup.Controllers
             
             var dto = new ParticipantDTO
             {
-                Id = participant.Id,
+                Id = (int)participant.Id,
                 Name = participant.Name
             };
             
@@ -102,8 +102,8 @@ namespace CiPeWorldCup.Controllers
             var dtos = scheduleResult.Value.Select(m => new MatchDTO
             {
                 Id = m.Id,
-                RoundNumber = m.RoundNumber,
-                ParticipantIds = m.ParticipantIds
+                RoundNumber = m.Round,
+                ParticipantIds = new[] { m.Player1Id, m.Player2Id }
             });
 
             return Ok(dtos);
@@ -124,7 +124,7 @@ namespace CiPeWorldCup.Controllers
                 return BadRequest(matchesResult.Error);
             }
             var matchesForParticipant = matchesResult.Value
-                .Where(m => m.ParticipantIds.Contains(i))
+                .Where(m => m.Player1Id == i || m.Player2Id == i)
                 .ToList();
             return Ok(matchesForParticipant);
         }

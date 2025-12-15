@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CiPeWorldCup.Infrastructure.Migrations
 {
     [DbContext(typeof(CiPeWorldCupDbContext))]
-    [Migration("20251127105208_AddTournamentAndMatchesTablesToDB")]
-    partial class AddTournamentAndMatchesTablesToDB
+    [Migration("20251212122237_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,49 +26,6 @@ namespace CiPeWorldCup.Infrastructure.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CiPeWorldCup.Core.Entities.Match", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.PrimitiveCollection<string>("ParticipantIds")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Player1Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Player1Wins")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Player2Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Player2Wins")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoundNumber")
-                        .HasColumnType("int");
-
-                    b.Property<long>("TournamentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("WinnerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TournamentId");
-
-                    b.ToTable("Match");
-                });
-
-            modelBuilder.Entity("CiPeWorldCup.Core.Entities.MatchesToDB", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,6 +58,8 @@ namespace CiPeWorldCup.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TournamentId");
 
                     b.ToTable("Matches");
                 });
@@ -224,16 +183,16 @@ namespace CiPeWorldCup.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CiPeWorldCup.Core.Entities.TournamentToDB", b =>
+            modelBuilder.Entity("CiPeWorldCup.Core.Entities.Tournament", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<long>("CurrentRound")
-                        .HasColumnType("bigint");
+                    b.Property<int>("CurrentRound")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
@@ -255,14 +214,14 @@ namespace CiPeWorldCup.Infrastructure.Migrations
 
             modelBuilder.Entity("CiPeWorldCup.Core.Entities.Match", b =>
                 {
-                    b.HasOne("CiPeWorldCup.Core.Entities.TournamentToDB", null)
+                    b.HasOne("CiPeWorldCup.Core.Entities.Tournament", null)
                         .WithMany("Matches")
                         .HasForeignKey("TournamentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CiPeWorldCup.Core.Entities.TournamentToDB", b =>
+            modelBuilder.Entity("CiPeWorldCup.Core.Entities.Tournament", b =>
                 {
                     b.Navigation("Matches");
                 });

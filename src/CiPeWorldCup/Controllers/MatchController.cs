@@ -46,9 +46,9 @@ public class MatchController : ControllerBase
     }
 
     [HttpGet("remaining")]
-    public ActionResult<long> GetRemainingMatches(
-        [FromQuery(Name = "n")] long totalPlayers, 
-        [FromQuery(Name = "D")] long roundsPlayed)
+    public ActionResult<int> GetRemainingMatches(
+        [FromQuery(Name = "n")] int totalPlayers, 
+        [FromQuery(Name = "D")] int roundsPlayed)
     {
         var query = new GetRemainingMatchesQuery(totalPlayers, roundsPlayed);
         
@@ -58,9 +58,9 @@ public class MatchController : ControllerBase
 
     [HttpGet("match")] // /api/match/match?n=10&i=4&d=2
     public async Task<IActionResult> GetMatchForPlayerInRound(
-        [FromQuery(Name = "n")] long n, 
-        [FromQuery(Name = "i")] long i, 
-        [FromQuery(Name = "d")] long d)
+        [FromQuery(Name = "n")] int n, 
+        [FromQuery(Name = "i")] int i, 
+        [FromQuery(Name = "d")] int d)
     {
         var participants = await _participantService.GetAllParticipantsAsync();
         var participantsList = participants.ToList();
@@ -78,7 +78,7 @@ public class MatchController : ControllerBase
         }
         
         var match = matchesResult.Value
-            .FirstOrDefault(m => m.ParticipantIds.Contains(i));
+            .FirstOrDefault(m => m.Player1Id == i || m.Player2Id == i);
         
         if (match == null)
         {

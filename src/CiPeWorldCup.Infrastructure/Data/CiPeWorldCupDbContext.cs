@@ -10,18 +10,22 @@ public class CiPeWorldCupDbContext : DbContext
     }
     
     public DbSet<Participant> Participants { get; set; }
-    public DbSet<MatchesToDB> Matches { get; set; }
-    public DbSet<TournamentToDB> Tournaments { get; set; }
+    public DbSet<Match> Matches { get; set; }
+    public DbSet<Tournament> Tournaments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         
-        modelBuilder.Entity<TournamentToDB>()
+        modelBuilder.Entity<Tournament>()
             .HasMany(t => t.Matches)
             .WithOne()
             .HasForeignKey(m => m.TournamentId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        // Ignore the Schedule property since it's not stored in the database
+        modelBuilder.Entity<Tournament>()
+            .Ignore(t => t.Schedule);
         
         modelBuilder.Entity<Participant>().HasData(
             new Participant("Alice", 1),
