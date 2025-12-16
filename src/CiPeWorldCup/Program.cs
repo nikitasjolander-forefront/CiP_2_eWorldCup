@@ -1,5 +1,4 @@
 ﻿using CiPeWorldCup.Application.Services;
-using CiPeWorldCup.Core;
 using CiPeWorldCup.Core.Interfaces;
 using CiPeWorldCup.Infrastructure.Data;
 using CiPeWorldCup.Infrastructure.Repositories;

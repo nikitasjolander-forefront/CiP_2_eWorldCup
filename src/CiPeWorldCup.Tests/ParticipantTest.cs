@@ -1,7 +1,5 @@
 ﻿using CiPeWorldCup.Core;
 using CiPeWorldCup.Core.Entities;
-using CiPeWorldCup.Core.Validation;
-using System.Numerics;
 
 namespace CiPeWorldCup.Tests;
 

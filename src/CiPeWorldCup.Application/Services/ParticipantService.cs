@@ -1,10 +1,5 @@
-﻿using CiPeWorldCup.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CiPeWorldCup.Core.Entities;
+﻿using CiPeWorldCup.Core.Entities;
+using CiPeWorldCup.Core.Interfaces;
 
 namespace CiPeWorldCup.Application.Services;
 public class ParticipantService

@@ -2,11 +2,6 @@
 using CiPeWorldCup.Core.Interfaces;
 using CiPeWorldCup.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace CiPeWorldCup.Infrastructure.Repositories;
 

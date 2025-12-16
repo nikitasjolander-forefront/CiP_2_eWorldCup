@@ -1,6 +1,4 @@
-﻿using CiPeWorldCup.Application.Queries;
-using CiPeWorldCup.Core.Entities;
-using CiPeWorldCup.Infrastructure;
+﻿using CiPeWorldCup.Core.Entities;
 using CiPeWorldCup.Infrastructure.Data;
 using CiPeWorldCup.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;

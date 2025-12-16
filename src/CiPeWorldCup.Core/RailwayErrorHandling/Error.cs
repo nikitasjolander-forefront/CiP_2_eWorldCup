@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CiPeWorldCup.Core.RailwayErrorHandling;
+﻿namespace CiPeWorldCup.Core.RailwayErrorHandling;
 
 public readonly record struct Error(string Code, string Message)
 {

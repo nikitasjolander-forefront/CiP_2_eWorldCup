@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CiPeWorldCup.Core.Entities;
+﻿namespace CiPeWorldCup.Core.Entities;
 
 public sealed record Tournament
 {

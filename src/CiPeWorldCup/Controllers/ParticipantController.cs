@@ -1,6 +1,6 @@
 ﻿using CiPeWorldCup.API.DTO;
-using CiPeWorldCup.Application.Services;
 using CiPeWorldCup.Application.Queries;
+using CiPeWorldCup.Application.Services;
 using CiPeWorldCup.Core.Entities;
 using CiPeWorldCup.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
